@@ -23,4 +23,13 @@ export default class CategoriesRepository {
 
     this.categories.push(category)
   }
+
+  list(): Category[] {
+    return this.categories
+  }
+
+  findByName(name: string): Category | undefined {
+    const category = this.categories.find((c) => c.name === name)
+    return category
+  }
 }
