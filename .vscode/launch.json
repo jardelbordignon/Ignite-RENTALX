@@ -1,0 +1,19 @@
+{
+  // "request": "launch", -> inicia o modo debug ao iniciar a aplicação
+  // "program": "${workspaceFolder}\\src\\server.ts", -> arquivo main
+
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Launch Program",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/**/*.js"
+      ]
+    }
+  ]
+}
