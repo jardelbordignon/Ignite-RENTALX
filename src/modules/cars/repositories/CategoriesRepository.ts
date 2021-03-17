@@ -14,11 +14,7 @@ export default class CategoriesRepository implements ICategoriesRepository {
   create({ name, description }: ICreateCategoryDTO): void {
     const category = new Category()
 
-    Object.assign(category, {
-      name,
-      description,
-      created_at: new Date(),
-    })
+    Object.assign(category, { name, description })
 
     this.categories.push(category)
   }
