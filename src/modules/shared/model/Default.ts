@@ -2,9 +2,12 @@ import { v4 as uuid } from 'uuid'
 
 export default class Default {
   id?: string
-  created_at: Date
+  created_at?: Date
 
   constructor() {
-    if (!this.id) this.id = uuid()
+    if (!this.id) {
+      this.id = uuid()
+      this.created_at = new Date()
+    }
   }
 }

@@ -1,5 +1,7 @@
-import { ICreateCategoryDTO } from '../model/Category'
-import ICategoriesRepository from '../repositories/ICategoriesRepository'
+import {
+  ICategoriesRepository,
+  ICreateCategoryDTO,
+} from '../repositories/ICategoriesRepository'
 
 export default class CreateCategoryService {
   constructor(private categoriesRepository: ICategoriesRepository) {}
@@ -11,9 +13,6 @@ export default class CreateCategoryService {
       throw new Error(`Category ${name} already exists`)
     }
 
-    this.categoriesRepository.create({
-      name,
-      description,
-    })
+    this.categoriesRepository.create({ name, description })
   }
 }

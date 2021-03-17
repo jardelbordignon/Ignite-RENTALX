@@ -1,3 +1,4 @@
+import Specification from '../model/Specification'
 import {
   ISpecificationsRepository,
   ICreateSpecificationDTO,
@@ -5,7 +6,25 @@ import {
 
 export default class SpecificationsRepository
   implements ISpecificationsRepository {
+  private specifications: Specification[]
+
+  constructor() {
+    this.specifications = []
+  }
+
   create({ name, description }: ICreateSpecificationDTO): void {
-    throw new Error('Method not implemented.')
+    const specification = new Specification()
+
+    Object.assign(specification, { name, description })
+
+    this.specifications.push(specification)
+  }
+
+  findByName(name: string): Specification | undefined {
+    const specification = this.specifications.find(
+      (specification) => specification.name === name
+    )
+
+    return specification
   }
 }
