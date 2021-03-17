@@ -1,9 +1,11 @@
+import Default from './Default'
+
 interface ICreateSpecificationDTO {
   name: string
   description: string
 }
 
-class Specification {
+class Specification extends Default {
   name: string
   description: string
 }
