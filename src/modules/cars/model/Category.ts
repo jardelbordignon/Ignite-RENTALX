@@ -1,4 +1,4 @@
-import Default from './Default'
+import Default from '../../shared/model/Default'
 
 interface ICreateCategoryDTO {
   name: string
