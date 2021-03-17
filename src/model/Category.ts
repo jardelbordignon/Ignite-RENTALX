@@ -1,19 +1,13 @@
-import { v4 as uuid } from 'uuid'
+import Default from './Default'
 
 interface ICreateCategoryDTO {
   name: string
   description: string
 }
 
-class Category {
-  id?: string
+class Category extends Default {
   name: string
   description: string
-  created_at: Date
-
-  constructor() {
-    if (!this.id) this.id = uuid()
-  }
 }
 
 export { Category, ICreateCategoryDTO }
