@@ -1,6 +1,6 @@
 {
   "type": "postgres",
-  "host": "172.27.0.2",
+  "host": "localhost",
   "port": 5432,
   "username": "postgres",
   "password": "docker",
@@ -11,9 +11,12 @@
      "src/entity/**/*.ts"
   ],
   "migrations": [
-     "src/migration/**/*.ts"
+     "./src/database/migrations/**/*.ts"
   ],
   "subscribers": [
-     "src/subscriber/**/*.ts"
-  ]
+     "src/database/subscriber/**/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
 }
