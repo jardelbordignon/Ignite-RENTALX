@@ -11,7 +11,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=docker
-      - POSTGRES_BD=rentx
+      - POSTGRES_DB=rentx
     volumes:
       - pgdata:/data/postgres
   app:
