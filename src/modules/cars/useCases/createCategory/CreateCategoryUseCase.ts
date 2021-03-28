@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe'
 
+import { AppError } from '../../../../errors/AppError'
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
@@ -16,7 +17,7 @@ export class CreateCategoryUseCase {
     const existsCategory = await this.categoriesRepository.findByName(name)
 
     if (existsCategory) {
-      throw new Error(`Category ${name} already exists`)
+      throw new AppError(`Category ${name} already exists`)
     }
 
     this.categoriesRepository.create({ name, description })

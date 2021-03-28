@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { verify } from 'jsonwebtoken'
 
+import { AppError } from '../errors/AppError'
 import { UsersRepository } from '../modules/accounts/repositories/implementations/UsersRepository'
 
 interface IPayload {
@@ -14,7 +15,7 @@ export async function ensureAuthenticated(
 ) {
   const authHeader = request.headers.authorization
 
-  if (!authHeader) throw new Error('Token missing')
+  if (!authHeader) throw new AppError('Token missing', 401)
 
   // 'Bearer xxxxxxxx'
   const [, token] = authHeader.split(' ')
@@ -28,10 +29,10 @@ export async function ensureAuthenticated(
 
     const user = usersRepository.findById(user_id)
 
-    if (!user) throw new Error('User does not exists')
+    if (!user) throw new AppError('User does not exists')
 
     next()
   } catch (error) {
-    throw new Error('Invalid token')
+    throw new AppError('Invalid token', 401)
   }
 }
