@@ -18,4 +18,7 @@ export class User extends Default {
 
   @Column()
   isAdmin: boolean
+
+  @Column({ default: null })
+  avatar: string
 }
