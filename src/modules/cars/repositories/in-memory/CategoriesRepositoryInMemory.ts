@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid'
 
-import Category from '../../entities/Category'
+import Category from '@/modules/cars/entities/Category'
+
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
