@@ -1,6 +1,6 @@
 import { Column, Entity } from 'typeorm'
 
-import Default from '@/shared/entities/Default'
+import Default from '@/shared/infra/typeorm/entities/Default'
 
 @Entity('users')
 export class User extends Default {
