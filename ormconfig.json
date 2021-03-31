@@ -8,15 +8,15 @@
   "synchronize": true,
   "logging": false,
   "entities": [
-    "./src/modules/**/entities/*.ts"
+    "./src/modules/**/infra/typeorm/entities/*.ts"
   ],
   "migrations": [
-     "./src/database/migrations/**/*.ts"
+     "./src/shared/infra/typeorm/database/migrations/**/*.ts"
   ],
   "subscribers": [
-     "src/database/subscriber/**/*.ts"
+     "./src/shared/infra/typeorm/database/subscriber/**/*.ts"
   ],
   "cli": {
-    "migrationsDir": "./src/database/migrations"
+    "migrationsDir": "./src/shared/infra/typeorm/database/migrations"
   }
 }
