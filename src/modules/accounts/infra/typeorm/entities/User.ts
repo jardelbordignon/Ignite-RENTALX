@@ -16,7 +16,7 @@ export class User extends Default {
   @Column()
   driver_license: string
 
-  @Column()
+  @Column({ default: false })
   is_admin: boolean
 
   @Column({ default: null })
