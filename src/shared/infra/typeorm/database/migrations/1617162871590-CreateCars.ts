@@ -60,7 +60,7 @@ export default class CreateCars1617162871590 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'FKCarsCategoryId',
+            name: 'FKCategoryCar',
             referencedTableName: 'categories',
             referencedColumnNames: ['id'],
             columnNames: ['category_id'],

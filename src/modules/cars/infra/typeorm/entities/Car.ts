@@ -1,13 +1,36 @@
-export class Car {
-  id: string
-  category_id: string
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm'
+
+import Default from '@/shared/infra/typeorm/entities/Default'
+
+import { Category } from './Category'
+
+@Entity('cars')
+export class Car extends Default {
+  @Column()
   name: string
+
+  @Column()
   description: string
+
+  @Column()
   daily_rate: number
+
+  @Column({ default: true })
   available: boolean
+
+  @Column()
   license_plate: string
-  fine_amount: string
+
+  @Column()
+  fine_amount: number
+
+  @Column()
   brand: string
-  created_at: Date
-  updated_at: Date
+
+  @Column()
+  category_id: string
+
+  @ManyToOne(() => Category)
+  @JoinColumn({ name: 'category_id' })
+  category: Category
 }
