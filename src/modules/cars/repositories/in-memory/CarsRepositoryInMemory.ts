@@ -1,12 +1,12 @@
 import { v4 as uuid } from 'uuid'
 
 import { Car } from '../../infra/typeorm/entities/Car'
-import { ICarsRepository, ICreateCarDTO } from '../ICarsRepository'
+import { ICarsRepository, ISaveCarDTO } from '../ICarsRepository'
 
 export class CarsRepositoryInMemory implements ICarsRepository {
   cars: Car[] = []
 
-  async create(carData: ICreateCarDTO): Promise<Car> {
+  async save(carData: ISaveCarDTO): Promise<Car> {
     const car = new Car()
     Object.assign(car, {
       id: uuid(),
@@ -18,6 +18,10 @@ export class CarsRepositoryInMemory implements ICarsRepository {
     this.cars.push(car)
 
     return car
+  }
+
+  async findById(id: string): Promise<Car> {
+    return this.cars.find((car) => car.id === id)
   }
 
   async findByLicensePlate(license_plate: string): Promise<Car> {

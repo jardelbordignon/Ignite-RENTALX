@@ -1,8 +1,16 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+} from 'typeorm'
 
 import Default from '@/shared/infra/typeorm/entities/Default'
 
 import { Category } from './Category'
+import { Specification } from './Specification'
 
 @Entity('cars')
 export class Car extends Default {
@@ -33,4 +41,12 @@ export class Car extends Default {
   @ManyToOne(() => Category)
   @JoinColumn({ name: 'category_id' })
   category: Category
+
+  @ManyToMany(() => Specification)
+  @JoinTable({
+    name: 'specifications_cars',
+    joinColumns: [{ name: 'car_id' }],
+    inverseJoinColumns: [{ name: 'specification_id' }],
+  })
+  specifications: Specification[]
 }

@@ -3,7 +3,7 @@ import { getRepository, Repository } from 'typeorm'
 import { Car } from '@/modules/cars/infra/typeorm/entities/Car'
 import {
   ICarsRepository,
-  ICreateCarDTO,
+  ISaveCarDTO,
 } from '@/modules/cars/repositories/ICarsRepository'
 
 export class CarsRepository implements ICarsRepository {
@@ -13,7 +13,11 @@ export class CarsRepository implements ICarsRepository {
     this.repository = getRepository(Car)
   }
 
-  async create(data: ICreateCarDTO): Promise<Car> {
+  async findById(id: string): Promise<Car> {
+    return this.repository.findOne(id)
+  }
+
+  async save(data: ISaveCarDTO): Promise<Car> {
     const car = this.repository.create(data)
     await this.repository.save(car)
 
