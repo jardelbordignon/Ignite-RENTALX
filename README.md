@@ -39,14 +39,13 @@ O usuário resposável pelo cadastro deve ser um administrador
 # Cadastro de imagens do carro
 
 **RF**
-Deve ser possível cadastrar a imagem do carro
-Deve ser possível listar todos os carros
+Deve ser possível cadastrar até 6 imagens por carro
 
 **RNF**
 Utilizar o multer para upload dos arquivos
 
 **RN**
-O usuário não pode cadastrar mais de uma imagem para o mesmo carro
+O usuário pode cadastrar mais de uma imagem para o mesmo carro
 O usuário resposável pelo cadastro deve ser um administrador
 
 
