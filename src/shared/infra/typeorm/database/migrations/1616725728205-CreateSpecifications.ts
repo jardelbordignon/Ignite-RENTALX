@@ -11,8 +11,8 @@ export default class CreateSpecifications1616725728205
             name: 'id',
             type: 'uuid',
             isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+            // generationStrategy: 'uuid',
+            // default: 'uuid_generate_v4()',
           },
           {
             name: 'name',

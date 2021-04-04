@@ -1,5 +1,5 @@
 import { Rental } from '../../infra/typeorm/entities/Rental'
-import { IRentalsRepository } from '../IRentalsRepository'
+import { IRentalsRepository, ISaveRentalDTO } from '../IRentalsRepository'
 
 export class RentalsRepositoryInMemory implements IRentalsRepository {
   rentals: Rental[] = []
@@ -14,5 +14,15 @@ export class RentalsRepositoryInMemory implements IRentalsRepository {
     return this.rentals.find(
       (rental) => rental.user_id === user_id && !rental.end_date
     )
+  }
+
+  async save(data: ISaveRentalDTO): Promise<Rental> {
+    const rental = new Rental()
+
+    Object.assign(rental, { ...data, start_date: new Date() })
+
+    this.rentals.push(rental)
+
+    return rental
   }
 }

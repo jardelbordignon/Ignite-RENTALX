@@ -1,5 +1,3 @@
-import { v4 as uuid } from 'uuid'
-
 import { Category } from '@/modules/cars/infra/typeorm/entities/Category'
 
 import {
@@ -20,7 +18,7 @@ export class CategoriesRepositoryInMemory implements ICategoriesRepository {
 
   async create({ name, description }: ICreateCategoryDTO): Promise<void> {
     const category = new Category()
-    Object.assign(category, { id: uuid(), name, description })
+    Object.assign(category, { name, description })
     this.categories.push(category)
   }
 }

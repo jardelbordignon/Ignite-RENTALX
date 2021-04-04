@@ -1,5 +1,3 @@
-import { v4 as uuid } from 'uuid'
-
 import {
   ICreateSpecificationDTO,
   ISpecificationsRepository,
@@ -20,7 +18,7 @@ export class SpecificationsRepositoryInMemory
     description,
   }: ICreateSpecificationDTO): Promise<Specification> {
     const specification = new Specification()
-    Object.assign(specification, { id: uuid(), name, description })
+    Object.assign(specification, { name, description })
     this.specifications.push(specification)
 
     return specification

@@ -12,8 +12,8 @@ export default class CreateCarImages1617459735222
           name: 'id',
           type: 'uuid',
           isPrimary: true,
-          generationStrategy: 'uuid',
-          default: 'uuid_generate_v4()',
+          // generationStrategy: 'uuid',
+          // default: 'uuid_generate_v4()',
         },
         {
           name: 'car_id',

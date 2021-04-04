@@ -11,8 +11,8 @@ export default class CreateRentals1617503155885 implements MigrationInterface {
           name: 'id',
           type: 'uuid',
           isPrimary: true,
-          generationStrategy: 'uuid',
-          default: 'uuid_generate_v4()',
+          // generationStrategy: 'uuid',
+          // default: 'uuid_generate_v4()',
         },
         {
           name: 'car_id',

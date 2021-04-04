@@ -1,5 +1,3 @@
-import { v4 as uuid } from 'uuid'
-
 import { ICreateUserDTO } from '@/modules/accounts/dtos/ICreateUserDTO'
 import { User } from '@/modules/accounts/infra/typeorm/entities/User'
 
@@ -10,7 +8,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
 
   async create(data: ICreateUserDTO): Promise<void> {
     const user = new User()
-    Object.assign(user, { id: uuid(), ...data })
+    Object.assign(user, { ...data })
     this.users.push(user)
   }
 

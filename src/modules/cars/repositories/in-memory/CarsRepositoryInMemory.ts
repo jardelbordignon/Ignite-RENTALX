@@ -1,5 +1,3 @@
-import { v4 as uuid } from 'uuid'
-
 import { Car } from '../../infra/typeorm/entities/Car'
 import { ICarsRepository, ISaveCarDTO } from '../ICarsRepository'
 
@@ -9,7 +7,6 @@ export class CarsRepositoryInMemory implements ICarsRepository {
   async save(carData: ISaveCarDTO): Promise<Car> {
     const car = new Car()
     Object.assign(car, {
-      id: uuid(),
       ...carData,
       available: true,
       create_at: new Date(),

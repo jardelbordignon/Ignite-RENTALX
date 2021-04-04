@@ -10,8 +10,8 @@ export default class CreateCars1617162871590 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+            // generationStrategy: 'uuid',
+            // default: 'uuid_generate_v4()',
           },
           {
             name: 'category_id',

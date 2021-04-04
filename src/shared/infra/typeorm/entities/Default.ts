@@ -3,6 +3,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
+import { v4 as uuid } from 'uuid'
 
 export default class Default {
   @PrimaryGeneratedColumn('uuid')
@@ -13,4 +14,10 @@ export default class Default {
 
   @UpdateDateColumn()
   updated_at: Date
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid()
+    }
+  }
 }
