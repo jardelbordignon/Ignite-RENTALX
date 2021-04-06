@@ -29,8 +29,6 @@ describe('CreateRentalUseCase', () => {
       expected_return_date,
     })
 
-    console.log(rental)
-
     expect(rental).toHaveProperty('id')
     expect(rental).toHaveProperty('start_date')
   })
