@@ -12,7 +12,7 @@ let authToken: string
 describe('ListCategoriesController', () => {
   beforeAll(async () => {
     connection = await createConnection()
-    await connection.dropDatabase()
+    // await connection.dropDatabase()
     await connection.runMigrations()
 
     const password = await hash('admin', 8)
@@ -32,7 +32,7 @@ describe('ListCategoriesController', () => {
   })
 
   afterAll(async () => {
-    // await connection.dropDatabase()
+    await connection.dropDatabase()
     await connection.close()
   })
 
