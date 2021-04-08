@@ -20,5 +20,11 @@ export class Rental extends Default {
   expected_return_date: Date
 
   @Column({ default: null })
+  total_daily: number
+
+  @Column({ default: null })
+  total_fine: number
+
+  @Column({ default: null })
   total: number
 }

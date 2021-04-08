@@ -46,12 +46,13 @@ export class CreateRentalUseCase {
 
     const now = this.dateProvider.dateNow()
 
-    const compare = this.dateProvider.differenceInHours(
+    const diffInHours = this.dateProvider.differenceTime(
       now,
-      expected_return_date
+      expected_return_date,
+      'hours'
     )
 
-    if (compare < minRentalHours)
+    if (diffInHours < minRentalHours)
       throw new AppError(`Minimun rental hours must be ${minRentalHours}`)
 
     const rental = await this.rentalsRepository.save({

@@ -10,11 +10,22 @@ export class DayjsDateProvider implements IDateProvider {
     return dayjs(date).utc().local().format()
   }
 
-  differenceInHours(start_date: Date, end_date: Date): number {
+  // differenceInHours(start_date: Date, end_date: Date): number {
+  //   const start_date_utc = this.convertToUtc(start_date)
+  //   const end_date_utc = this.convertToUtc(end_date)
+
+  //   return dayjs(end_date_utc).diff(start_date_utc, 'hours')
+  // }
+
+  differenceTime(
+    start_date: Date,
+    end_date: Date,
+    time?: 'minutes' | 'hours' | 'days' | 'months' | 'years'
+  ): number {
     const start_date_utc = this.convertToUtc(start_date)
     const end_date_utc = this.convertToUtc(end_date)
 
-    return dayjs(end_date_utc).diff(start_date_utc, 'hours')
+    return dayjs(end_date_utc).diff(start_date_utc, time || 'hours')
   }
 
   dateNow(): Date {

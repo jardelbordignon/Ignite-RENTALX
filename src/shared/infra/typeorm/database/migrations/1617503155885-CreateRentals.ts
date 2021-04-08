@@ -35,7 +35,16 @@ export default class CreateRentals1617503155885 implements MigrationInterface {
         {
           name: 'expected_return_date',
           type: 'timestamp',
-          default: 'now()',
+        },
+        {
+          name: 'total_daily',
+          type: 'numeric',
+          isNullable: true,
+        },
+        {
+          name: 'total_fine',
+          type: 'numeric',
+          isNullable: true,
         },
         {
           name: 'total',
