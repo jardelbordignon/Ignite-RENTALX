@@ -15,5 +15,6 @@ export interface IRentalsRepository {
   findById(id: string): Promise<Rental>
   findOpenedRentalByCar(car_id: string): Promise<Rental>
   findOpenedRentalByUser(user_id: string): Promise<Rental>
+  findAllByUser(user_id: string): Promise<Rental[]>
   save(data: ISaveRentalDTO): Promise<Rental>
 }
