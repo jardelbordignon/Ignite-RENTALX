@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm'
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm'
 
+import { Car } from '@/modules/cars/infra/typeorm/entities/Car'
 import Default from '@/shared/infra/typeorm/entities/Default'
 
 @Entity('rentals')
@@ -27,4 +28,8 @@ export class Rental extends Default {
 
   @Column({ default: null })
   total: number
+
+  @ManyToOne(() => Car)
+  @JoinColumn({ name: 'car_id' })
+  car: Car
 }

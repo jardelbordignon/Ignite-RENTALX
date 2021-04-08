@@ -27,7 +27,10 @@ export class RentalsRepository implements IRentalsRepository {
   }
 
   async findAllByUser(user_id: string): Promise<Rental[]> {
-    return this.repository.find({ user_id })
+    return this.repository.find({
+      where: { user_id },
+      relations: ['car'],
+    })
   }
 
   async save(data: ISaveRentalDTO): Promise<Rental> {
