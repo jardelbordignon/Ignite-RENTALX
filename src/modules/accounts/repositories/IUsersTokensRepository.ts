@@ -7,5 +7,10 @@ export interface ICreateUserTokenDTO {
 }
 
 export interface IUsersTokensRepository {
+  deleteById(id: string): Promise<void>
+  findByUserIdAndRefreshToken(
+    user_id: string,
+    refresh_token: string
+  ): Promise<UserToken>
   save(data: ICreateUserTokenDTO): Promise<UserToken>
 }
