@@ -2,8 +2,12 @@ import { compare } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 import { inject, injectable } from 'tsyringe'
 
+import configAuth from '@/config/auth'
 import { IUsersRepository } from '@/modules/accounts/repositories/IUsersRepository'
+import { IDateProvider } from '@/shared/container/providers/DateProvider/IDateProvider'
 import { AppError } from '@/shared/errors/AppError'
+
+import { IUsersTokensRepository } from '../../repositories/IUsersTokensRepository'
 
 interface IRequest {
   email: string
@@ -16,13 +20,18 @@ interface IResponse {
     email: string
   }
   token: string
+  refresh_token: string
 }
 
 @injectable()
 export class AuthenticateUserUseCase {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    @inject('UsersTokensRepository')
+    private usersTokensRepository: IUsersTokensRepository,
+    @inject('DayjsDateProvider')
+    private dateProvider: IDateProvider
   ) {}
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
@@ -34,9 +43,29 @@ export class AuthenticateUserUseCase {
 
     if (!passwordMatch) throw new AppError('Email or password incorrect')
 
-    const token = sign({}, '9b53887378871f09c68ea7bc371fe04c', {
+    const {
+      secret_token,
+      expires_in_token,
+      secret_refresh_token,
+      expires_in_refresh_token,
+    } = configAuth
+
+    const token = sign({}, secret_token, {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn: expires_in_token,
+    })
+
+    const refresh_token = sign({ email }, secret_refresh_token, {
+      subject: user.id,
+      expiresIn: expires_in_refresh_token,
+    })
+
+    const expires_at = this.dateProvider.addTime(30, 'days')
+
+    await this.usersTokensRepository.save({
+      user_id: user.id,
+      refresh_token,
+      expires_at,
     })
 
     const authInfo: IResponse = {
@@ -45,6 +74,7 @@ export class AuthenticateUserUseCase {
         email: user.email,
       },
       token,
+      refresh_token,
     }
 
     return authInfo
