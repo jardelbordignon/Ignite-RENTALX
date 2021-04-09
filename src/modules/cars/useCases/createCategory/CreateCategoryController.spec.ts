@@ -3,7 +3,6 @@ import request from 'supertest'
 import { Connection, createConnection } from 'typeorm'
 import { v4 as uuid } from 'uuid'
 
-import { AppError } from '@/shared/errors/AppError'
 import { app } from '@/shared/infra/http/app'
 
 let connection: Connection
@@ -61,16 +60,16 @@ describe('CreateCategoryController', () => {
         Authorization: `Bearer ${authToken}`,
       })
 
-    expect(async () => {
-      request(app)
-        .post('/categories')
-        .send({
-          name: 'Category supertest',
-          description: 'Category supertest',
-        })
-        .set({
-          Authorization: `Bearer ${authToken}`,
-        })
-    }).rejects.toBeInstanceOf(AppError)
+    const response = await request(app)
+      .post('/categories')
+      .send({
+        name: 'Category supertest',
+        description: 'Category supertest',
+      })
+      .set({
+        Authorization: `Bearer ${authToken}`,
+      })
+
+    expect(response.status).toBe(400)
   })
 })

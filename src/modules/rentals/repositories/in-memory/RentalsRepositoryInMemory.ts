@@ -20,6 +20,10 @@ export class RentalsRepositoryInMemory implements IRentalsRepository {
     )
   }
 
+  async findAllByUser(user_id: string): Promise<Rental[]> {
+    return this.rentals.filter((rental) => rental.user_id === user_id)
+  }
+
   async save(data: ISaveRentalDTO): Promise<Rental> {
     const rental = new Rental()
 

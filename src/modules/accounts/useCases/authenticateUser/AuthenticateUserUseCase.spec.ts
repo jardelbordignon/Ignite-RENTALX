@@ -36,15 +36,13 @@ describe('AuthenticateUserUseCase', () => {
     expect(authInfo).toHaveProperty('token')
   })
 
-  it('Should not be able to authenticate a non existent user', () => {
-    const authResponse = async () => {
-      await authenticateUserUseCase.execute({
+  it('Should not be able to authenticate a non-existent user', async () => {
+    await expect(
+      authenticateUserUseCase.execute({
         email: 'non-existent@email.com',
         password: '1234',
       })
-    }
-
-    expect(authResponse).rejects.toBeInstanceOf(AppError)
+    ).rejects.toEqual(new AppError('Email or password incorrect'))
   })
 
   it('Should not be able to authenticate with incorrent password', async () => {
@@ -57,13 +55,11 @@ describe('AuthenticateUserUseCase', () => {
 
     await createUserUseCase.execute(user)
 
-    const authResponse = async () => {
-      await authenticateUserUseCase.execute({
+    await expect(
+      authenticateUserUseCase.execute({
         email: user.email,
         password: 'incorrect-password',
       })
-    }
-
-    await expect(authResponse).rejects.toBeInstanceOf(AppError)
+    ).rejects.toEqual(new AppError('Email or password incorrect'))
   })
 })

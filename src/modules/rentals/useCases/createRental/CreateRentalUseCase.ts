@@ -29,10 +29,7 @@ export class CreateRentalUseCase {
     user_id,
     expected_return_date,
   }: IRequest): Promise<Rental> {
-    const minRentalHours = 24
-
-    const carExists = await this.carsRepository.findById(car_id)
-    if (!carExists) throw new AppError('This car not exists')
+    const minRentalDays = 1
 
     const openedRentalByCar = await this.rentalsRepository.findOpenedRentalByCar(
       car_id
@@ -44,16 +41,20 @@ export class CreateRentalUseCase {
     )
     if (openedRentalByUser) throw new AppError("There's a rental in progress")
 
+    const carExists = await this.carsRepository.findById(car_id)
+    if (!carExists) throw new AppError('This car not exists')
+
     const now = this.dateProvider.dateNow()
 
-    const diffInHours = this.dateProvider.differenceTime(
+    const differenceInDays = this.dateProvider.differenceTime(
       now,
       expected_return_date,
-      'hours'
+      'days'
     )
 
-    if (diffInHours < minRentalHours)
-      throw new AppError(`Minimun rental hours must be ${minRentalHours}`)
+    if (differenceInDays < minRentalDays) {
+      throw new AppError(`Minimun rental days must be ${minRentalDays}`)
+    }
 
     const rental = await this.rentalsRepository.save({
       car_id,

@@ -47,7 +47,7 @@ describe('CreateCarUseCase', () => {
         brand: 'Fiat',
         category_id: 'uuid-xxxx-123',
       })
-    ).rejects.toBeInstanceOf(AppError)
+    ).rejects.toEqual(new AppError(`Car already exists`))
   })
 
   it('should to create a new car with available true', async () => {
