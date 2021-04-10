@@ -8,6 +8,7 @@ export interface ICreateUserTokenDTO {
 
 export interface IUsersTokensRepository {
   deleteById(id: string): Promise<void>
+  findByRefreshToken(refresh_token: string): Promise<UserToken>
   findByUserIdAndRefreshToken(
     user_id: string,
     refresh_token: string

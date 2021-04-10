@@ -20,4 +20,5 @@ export interface IDateProvider {
     end_date: Date,
     type?: 'minutes' | 'hours' | 'days' | 'months' | 'years'
   ): number
+  isBefore(start_date: Date, end_date: Date): boolean
 }
