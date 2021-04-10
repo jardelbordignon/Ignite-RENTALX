@@ -15,8 +15,6 @@ export class CarsImagesRepository implements ICarsImagesRepository {
   }
 
   async save(carImageData: ISaveCarImageDTO): Promise<CarImage> {
-    console.log(carImageData)
-
     const carImage = this.repository.create(carImageData)
 
     await this.repository.save(carImage)

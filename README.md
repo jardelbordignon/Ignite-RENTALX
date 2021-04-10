@@ -81,3 +81,12 @@ Deve ser possível listar as locações realizadas pelo usuário
 **RN**
 O usuário deve estar logado na aplicação.
 
+# Recuperação de senha
+**RF**
+Deve ser possível o usuário recuperar a senha informando o e-mail
+O usuário deve receber um e-mail com as instruções para recuperar sua senha
+O usuário deve inserir uma nova senha
+
+**RN**
+O usuário precisa informar uma nova senha
+O link enviado para recuperar a senha deve expirar em 3 horas
