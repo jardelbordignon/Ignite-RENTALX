@@ -28,7 +28,7 @@ describe('ListCategoriesController', () => {
       password: 'admin',
     })
 
-    authToken = responseToken.body.token
+    authToken = responseToken.body.refresh_token
   })
 
   afterAll(async () => {
