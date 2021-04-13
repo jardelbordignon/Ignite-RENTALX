@@ -1,5 +1,13 @@
-import { ICreateUserDTO } from '@/modules/accounts/dtos/ICreateUserDTO'
 import { User } from '@/modules/accounts/infra/typeorm/entities/User'
+
+export interface ICreateUserDTO {
+  name: string
+  password: string
+  email: string
+  driver_license: string
+  id?: string
+  avatar?: string
+}
 
 interface IUsersRepository {
   create(data: ICreateUserDTO): Promise<void>
