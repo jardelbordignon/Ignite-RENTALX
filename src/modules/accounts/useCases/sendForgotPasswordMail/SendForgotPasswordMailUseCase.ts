@@ -21,7 +21,7 @@ export class SendForgotPasswordMailUseCase {
     @inject('DayjsDateProvider')
     private dateProvider: IDateProvider,
 
-    @inject('EtherealMailProvider')
+    @inject('MailProvider')
     private mailProvider: IMailProvider
   ) {}
 
@@ -43,7 +43,7 @@ export class SendForgotPasswordMailUseCase {
 
     const variables = {
       name: user.name,
-      link: `${process.env.BACKEND_URL}/password/reset?token=${refresh_token}`,
+      link: `${process.env.BACKEND_URL}/password/reset/${refresh_token}`,
     }
 
     const expires_at = this.dateProvider.addTime(3, 'hours')

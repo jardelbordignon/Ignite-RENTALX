@@ -25,7 +25,7 @@ export class User extends Default {
 
   @Expose({ name: 'avatar_url' })
   avatar_url(): string {
-    switch (process.env.STORAGE) {
+    switch (process.env.STORAGE_PROVIDER) {
       case 'local':
         return `${process.env.BACKEND_URL}/avatar/${this.avatar}`
       case 's3':
